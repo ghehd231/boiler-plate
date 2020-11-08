@@ -10,15 +10,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // json타입 분석해 가져오기
 app.use(bodyParser.json());
 
+const config = require('./config/key');
+
 // mongoose 연결
 const mongoose = require('mongoose');
 
-//.env로 몽고 커넥트 주소 숨김
-const dotenv = require('dotenv');
-dotenv.config();
+// .env로 몽고 커넥트 주소 숨김-> config/key에서 로컬/배포로 분기
+// const dotenv = require('dotenv');
+// dotenv.config();
+
+// mongoose
+//   .connect(process.env.MONGO_URI, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log('MongoDB Connected...'))
+//   .catch(err => console.log(err));
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(config.mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
