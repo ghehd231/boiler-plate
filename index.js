@@ -44,12 +44,13 @@ app.post('/register', (req, res) => {
   // 회원가입 시 필요한 정보들을 client에서 가져오면 DB에 넣어줌
   const user = new User(req.body);
 
-  user.save((err, userInfo) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).json({
-      success: true,
-    });
-  });
+  // 기존 내 프로젝트에 연결해서 테스트 시에 에러날 수 있어서 주석처리
+  //   user.save((err, userInfo) => {
+  //     if (err) return res.json({ success: false, err });
+  //     return res.status(200).json({
+  //       success: true,
+  //     });
+  //   });
 });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
